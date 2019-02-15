@@ -1,0 +1,58 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { RouterModule, PreloadAllModules } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
+import { ROUTES } from './app.routes'
+
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantComponent } from './restaurants/restaurant/restaurant.component'
+import { RestaurantsDetailComponent } from './restaurants-detail/restaurants-detail.component';
+import { MenuComponent } from './restaurants-detail/menu/menu.component';
+import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shopping-cart.component';
+import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
+import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
+import { from } from 'rxjs/observable/from';
+import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
+import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    RestaurantsComponent,
+    RestaurantComponent,
+    RestaurantsDetailComponent,
+    MenuComponent,
+    ShoppingCartComponent,
+    MenuItemComponent,
+    ReviewsComponent,
+    OrderSumaryComponent,
+    NotFoundComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    BrowserAnimationsModule,
+    SharedModule.forRoot(),
+    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules})
+  ],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
