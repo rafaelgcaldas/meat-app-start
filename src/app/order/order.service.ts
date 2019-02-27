@@ -1,17 +1,19 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ShoppingCartService } from "app/restaurants-detail/shopping-cart/shopping-cart.service";
 import { CartItem } from "app/restaurants-detail/shopping-cart/cart-item.model";
 import { Order } from "./order.model";
 import { Observable } from "rxjs";
 import { MEAT_API } from "app/app.api";
+import { loginService } from "app/security/login/login.service";
 
 @Injectable()
 export class OrderService {
 
     constructor(
         private http: HttpClient,
-        private cartService: ShoppingCartService
+        private cartService: ShoppingCartService,
+        private loginService: loginService
     ){}
 
     public cartItems(): CartItem[]{
@@ -35,8 +37,11 @@ export class OrderService {
     }
     
     public checkOrder(order: Order): Observable<string> {
-
-        return this.http.post<Order>(`${MEAT_API}/orders`, order)
+        let headers = new HttpHeaders();
+        if(this.loginService.isLoggedIn()){
+            headers = headers.set("Authorization", `Bearer ${this.loginService.user.accessToken}`)
+        }
+        return this.http.post<Order>(`${MEAT_API}/orders`, order, {headers: headers})
                 .map(order => order.id)
     }
 
