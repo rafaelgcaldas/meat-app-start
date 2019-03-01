@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { loginService } from './login.service';
+import { LoginService } from './login.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private loginService: loginService,
+    private loginService: LoginService,
     private notificationService: NotificationService,
     private activatedRoute: ActivatedRoute,
     private router: Router

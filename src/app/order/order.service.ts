@@ -5,7 +5,7 @@ import { CartItem } from "app/restaurants-detail/shopping-cart/cart-item.model";
 import { Order } from "./order.model";
 import { Observable } from "rxjs";
 import { MEAT_API } from "app/app.api";
-import { loginService } from "app/security/login/login.service";
+import { LoginService } from "app/security/login/login.service";
 
 @Injectable()
 export class OrderService {
@@ -13,7 +13,7 @@ export class OrderService {
     constructor(
         private http: HttpClient,
         private cartService: ShoppingCartService,
-        private loginService: loginService
+        private loginService: LoginService
     ){}
 
     public cartItems(): CartItem[]{
