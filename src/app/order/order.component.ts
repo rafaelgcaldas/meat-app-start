@@ -17,6 +17,7 @@ export class OrderComponent implements OnInit {
   public orderForm: FormGroup;
 
   public delivery: number = 8;
+  public orderId: string;
 
   public emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   public numberPattern = /^[0-9]*$/;
@@ -43,6 +44,10 @@ export class OrderComponent implements OnInit {
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
     }, {validator: OrderComponent.equalsTo});
+  }
+
+  public isOrderCompleted(): boolean {
+    return this.orderId !== undefined;
   }
 
   public static equalsTo(group: AbstractControl): {[Key: string]: boolean} {
@@ -85,6 +90,7 @@ export class OrderComponent implements OnInit {
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
     
     this.orderService.checkOrder(order)
+      .do((orderId: string) => this.orderId = orderId)
       .subscribe((orderId: string) => {
         this.router.navigate(["/order-summary"]);
         this.orderService.clear();

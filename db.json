@@ -500,6 +500,22 @@
         }
       ],
       "id": 8
+    },
+    {
+      "name": "Rafael Gomes Caldas",
+      "email": "rafael@gmail.com",
+      "emailConfirmation": "rafael@gmail.com",
+      "address": "teste 123",
+      "number": "325",
+      "optionalAddress": "",
+      "paymentOption": "DEB",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "coke.png"
+        }
+      ],
+      "id": 9
     }
   ]
 }
