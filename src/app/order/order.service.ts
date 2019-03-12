@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { ShoppingCartService } from "app/restaurants-detail/shopping-cart/shopping-cart.service";
 import { CartItem } from "app/restaurants-detail/shopping-cart/cart-item.model";
 import { Order } from "./order.model";
