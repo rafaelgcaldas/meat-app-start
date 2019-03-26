@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { MEAT_API } from "../app.api"
+import { MEAT_API } from "../app.api";
 import { MenuItem } from "app/restaurants-detail/menu-item/menu-item.model";
 
 @Injectable()
